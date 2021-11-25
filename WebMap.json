@@ -1,0 +1,19 @@
+[
+    {
+        "id": "f185032c402985a4",
+        "type": "debug",
+        "z": "200c11bc.712fce",
+        "name": "API Response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1120,
+        "y": 480,
+        "wires": []
+    }
+]
