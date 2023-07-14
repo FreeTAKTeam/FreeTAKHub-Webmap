@@ -1,0 +1,65 @@
+{
+    "label": "FTH Config",
+    "nodes": [
+        {
+            "id": "7bd719be0c7d64ed",
+            "type": "config",
+            "z": "11a0d232860855b2",
+            "name": "FTH Global Config",
+            "properties": [
+                {
+                    "p": "FTH_FTS_URL",
+                    "pt": "global",
+                    "to": "127.0.0.1",
+                    "tot": "str"
+                },
+                {
+                    "p": "FTH_FTS_TCP_Port",
+                    "pt": "global",
+                    "to": "8087",
+                    "tot": "str"
+                },
+                {
+                    "p": "FTH_FTS_API_Port",
+                    "pt": "global",
+                    "to": "19023",
+                    "tot": "str"
+                },
+                {
+                    "p": "FTH_FTS_API_Auth",
+                    "pt": "global",
+                    "to": "token",
+                    "tot": "str"
+                },
+                {
+                    "p": "FTH_FTS_STREAM_Port",
+                    "pt": "global",
+                    "to": "8554",
+                    "tot": "str"
+                },
+                {
+                    "p": "FTH_FTS_VIDEO_URL",
+                    "pt": "global",
+                    "to": "127.0.0.1",
+                    "tot": "str"
+                },
+                {
+                    "p": "FTH_FTS_VIDEO_API_PORT",
+                    "pt": "global",
+                    "to": "9997",
+                    "tot": "str"
+                },
+                {
+                    "p": "FTH_FTS_EndPoints_geoObject_POST",
+                    "pt": "global",
+                    "to": "/ManageGeoObject/postGeoObject",
+                    "tot": "str"
+                }
+            ],
+            "active": true,
+            "x": 310,
+            "y": 120,
+            "wires": []
+        }
+    ]
+}
