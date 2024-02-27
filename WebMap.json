@@ -368,7 +368,7 @@
     "type": "function",
     "z": "db2b165142e8c36a",
     "name": "",
-    "func": "\n  msg.addr =  global.get('FTH_FTS_URL');\n  msg.port = global.get('FTH_FTS_API_Port');\nlet lon = msg.payload.lon;\n  let lat = msg.payload.lat;\n  let attitude = msg.payload.value.attitude;\n  let geoobject = msg.payload.value.geobject;\n  let timeOut = Number(msg.payload.value.timeout);\n  let aName = msg.payload.value.name;\n  let token = global.get('FTH_FTS_API_Auth');\n\n \nmsg.headers = {};\nmsg.headers['Authorization'] = \"Bearer \"+ token;\n \n\nmsg.payload = [];\n\n msg.payload={\n   longitude: lon,\n latitude: lat,\nattitude: attitude,\ngeoObject: geoobject,\nhow: \"nonCoT\",\nname: aName,\ntimeout: timeOut \n };\n    \nreturn msg;\n",
+    "func": "\n  msg.addr =  global.get('FTH_FTS_URL');\n  msg.port = global.get('FTH_FTS_API_Port');\nlet lon = msg.payload.lon;\n  let lat = msg.payload.lat;\n  let attitude = msg.payload.value.attitude;\n  let geoobject = msg.payload.value.geobject;\n  let timeOut = Math.floor(Number(msg.payload.value.timeout) || 0);\n  let aName = msg.payload.value.name;\n  let token = global.get('FTH_FTS_API_Auth');\n\n \nmsg.headers = {};\nmsg.headers['Authorization'] = \"Bearer \"+ token;\n \n\nmsg.payload = [];\n\n msg.payload={\n   longitude: lon,\n latitude: lat,\nattitude: attitude,\ngeoObject: geoobject,\nhow: \"nonCoT\",\nname: aName,\ntimeout: timeOut \n };\n    \nreturn msg;\n",
     "outputs": 1,
     "noerr": 0,
     "initialize": "",
