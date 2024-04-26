@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  FreeTAKHub-webmap:
+    image: freetak-webmap:latest
+    pull_policy: build
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '1880:1880'
+    environment:
+      FTH_FTS_URL: 'free-tak-server'
+      FTH_FTS_TCP_Port: 8087
+      FTH_FTS_API_Auth: ''
