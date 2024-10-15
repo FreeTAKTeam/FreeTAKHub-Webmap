@@ -187,7 +187,8 @@
         "y": 400,
         "wires": [
             [
-                "b9f3138b8606246b"
+                "b9f3138b8606246b",
+                "b92392b73d5ae9c8"
             ]
         ]
     },
@@ -348,6 +349,23 @@
         "statusType": "auto",
         "x": 440,
         "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b92392b73d5ae9c8",
+        "type": "debug",
+        "z": "2c12da721d40c6cc",
+        "name": "CoT msg",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 460,
         "wires": []
     }
 ]
