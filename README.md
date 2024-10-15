@@ -14,3 +14,15 @@ Here are the names of those global environment variables and some sample values.
  "FTH_FTS_API_Port": "19023"
  "FTH_FTS_API_Auth": "token"
 ```
+
+This flow makes heavy use of worldmap.
+
+* https://flows.nodered.org/node/node-red-contrib-web-worldmap
+* https://github.com/dceejay/RedMap
+
+
+## Issues
+
+* https://github.com/dceejay/RedMap/issues/293
+* https://github.com/dceejay/RedMap/issues/292
+
