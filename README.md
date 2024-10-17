@@ -4,6 +4,36 @@ Repository for the FreeTAK_Hub_Webmap
 
 See docs [here](https://freetakteam.github.io/FreeTAKServer-User-Docs/FreeTAKHub/WebMap/Installation/)
 
+## Contents
+
+### `freetakhub_config.json`
+
+Deprecated.
+
+This contains a flow for setting the global context variables.
+Using global context variables is not gauranteed to be installed before they are used.
+Since v3.1 NodeRED recommends using global environment variables instead.
+
+### `freetakhub_webmap_v5.json`
+
+Updates to use global environment variables.
+Updates to use TAK nodes.
+
+
+### `freetakhub_webmap.json`
+
+Deprecated flow.
+
+### `README.md`
+
+This file.
+
+### `WebMap.json`
+
+Deprecated flow.
+
+## Global Environment Variables
+
 When using these flows there are a number of global environment variables which are expected:
 
 Here are the names of those global environment variables and some sample values.
