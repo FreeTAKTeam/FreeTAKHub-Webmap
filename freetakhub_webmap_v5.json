@@ -1,0 +1,390 @@
+[
+    {
+        "id": "2c12da721d40c6cc",
+        "type": "tab",
+        "label": "FTH Webmap"
+    },
+    {
+        "id": "cddcb8c22eb39afc",
+        "type": "comment",
+        "z": "2c12da721d40c6cc",
+        "name": "Connect to FTS",
+        "info": "",
+        "x": 240,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "24587476d18e5514",
+        "type": "comment",
+        "z": "2c12da721d40c6cc",
+        "name": "Convert to Worldmap Payload",
+        "info": "",
+        "x": 560,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "dc259eb71369576b",
+        "type": "debug",
+        "z": "2c12da721d40c6cc",
+        "name": "debug: TAK-map input",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "68d5546bc74741de",
+        "type": "worldmap",
+        "z": "2c12da721d40c6cc",
+        "name": "worldmap: tak-map",
+        "lat": "43",
+        "lon": "13",
+        "zoom": "4",
+        "layer": "EsriDG",
+        "cluster": "",
+        "maxage": "5000",
+        "usermenu": "show",
+        "layers": "show",
+        "panit": "false",
+        "panlock": "false",
+        "zoomlock": "false",
+        "hiderightclick": "false",
+        "coords": "deg",
+        "showgrid": "true",
+        "allowFileDrop": "true",
+        "path": "/tak-map",
+        "overlist": "",
+        "maplist": "OSMG,OSMC,EsriC,EsriS,EsriT,EsriO,EsriDG,NatGeo,OpTop,SW",
+        "mapname": "",
+        "mapurl": "",
+        "mapopt": "",
+        "mapwms": false,
+        "x": 890,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "986a03a06948772f",
+        "type": "worldmap in",
+        "z": "2c12da721d40c6cc",
+        "name": "worldmap: tak-map",
+        "path": "/tak-map",
+        "events": "other",
+        "x": 150,
+        "y": 460,
+        "wires": [
+            [
+                "fa144a2feb52460b",
+                "7ec6a0111d43d20a"
+            ]
+        ]
+    },
+    {
+        "id": "0218bfa764f2d1be",
+        "type": "debug",
+        "z": "2c12da721d40c6cc",
+        "name": "No form!!",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "70c9a88a608c375e",
+        "type": "function",
+        "z": "2c12da721d40c6cc",
+        "name": "Add The Menu",
+        "func": "msg.payload = { \n  command: {\ncontextmenu: String.raw`\n<table border=0><tr>\n<th>Attitude</th><td><select id=\"myatt\">\n  <option value=\"friend\">Friend</option>\n  <option value=\"hostile\">Hostile</option>\n  <option value=\"neutral\">Neutral</option>\n  <option value=\"unknown\">Unknown</option>\n  <option value=\"pending\">Pending</option>\n  <option value=\"suspect\">Suspect</option>\n  <option value=\"assumed\">Assumed Friend</option>\n  </select></td>\n</tr><tr>\n<th>Type</th><td><select id=\"mytyp\" value=\"Ground\" onchange=\"document.getElementById('mynam').value = this.value+'-'+parseInt(Math.random()*9999);\">\n  <option value=\"Ground\">Ground</option>\n  <option value=\"Gnd Equip Vehicle\">Gnd Equip Vehicle</option>\n  <option value=\"Gnd Combat Infantry Rifleman\">Rifleman</option>\n  <option value=\"Gnd Combat Infantry grenadier\">Grenadier</option>\n  <option value=\"Gnd Combat Infantry Mortar\">Mortar</option>\n  <option value=\"Gnd Combat Infantry MachineGunner (LMG)\">LMG</option>\n  <option value=\"Gnd Combat Infantry Medic\">Medic</option>\n  <option value=\"Gnd Combat Infantry anti Tank\">anti Tank</option>\n  <option value=\"Gnd Combat Infantry Sniper\">Sniper</option>\n  <option value=\"Gnd Combat Infantry Recon\">Recon</option>\n  <option value=\"Gnd Combat Infantry air defense\">AA</option>\n  <option value=\"Gnd Combat Infantry Engineer\">Engineer</option>\n</select></td>\n</tr><tr>\n<th>Timeout</th>\n<td><input type=\"number\" id=\"mytout\" step=\"10\" value=\"600\">S</td>\n</tr><tr>\n<th>Name</th><td><input type=\"text\" id=\"mynam\"></td>\n</tr><tr>\n<th>\n  <input name=\"my_spot_report\"\n    type=\"button\" value=\"Send\"\n    onclick=\n'feedback(\"map\", {\n    \"attitude\":document.getElementById(\"myatt\").value,\n    \"geoObject\":document.getElementById(\"mytyp\").value,\n    \"timeout\":document.getElementById(\"mytout\").value,\n    \"name\":document.getElementById(\"mynam\").value,\n    \"bearing\": 0.0,\n    \"distance\": 1.0,\n    \"how\": \"nonCoT\",\n},\"feedback\",true)'\n></th>\n</tr></table>\n`\n}\n}\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 540,
+        "y": 340,
+        "wires": [
+            [
+                "68d5546bc74741de"
+            ]
+        ]
+    },
+    {
+        "id": "b9f3138b8606246b",
+        "type": "http request",
+        "z": "2c12da721d40c6cc",
+        "name": "Post CoT to FTS",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "http://{{{addr}}}:{{{port}}}/{{{path}}}",
+        "tls": "",
+        "persist": true,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "bearer",
+        "senderr": false,
+        "headers": [],
+        "x": 870,
+        "y": 440,
+        "wires": [
+            [
+                "3a4c108ef6d59a3b"
+            ]
+        ]
+    },
+    {
+        "id": "1627f6d934a6ca86",
+        "type": "function",
+        "z": "2c12da721d40c6cc",
+        "name": "Map Msg: Event -> CoT",
+        "func": "\nvar newMsg = RED.util.cloneMessage(msg);\n\nnewMsg.addr = env.get('FTH_FTS_URL');\nnewMsg.port = env.get('FTH_FTS_API_Port');\nnewMsg.path = env.get('FTH_FTS_EndPoints_geoObject_POST').replace(/^\\/+/, '');\n\nnewMsg.headers = {};\nnewMsg.headers['Authorization'] = \"Bearer \"+ env.get('FTH_FTS_API_Auth');\n \nnewMsg.payload={\n  longitude: msg.payload.lon,\n  latitude: msg.payload.lat,\n  attitude: msg.payload.value.attitude,\n  bearing: msg.payload.value.bearing,\n  distance: msg.payload.value.distance,\n  geoObject: msg.payload.value.geoObject,\n  how: \"nonCoT\",\n  name: msg.payload.value.name,\n  timeout: Math.floor(Number(msg.payload.value.timeout) || 600),\n  // command: {\n  //    contextmenu: '<button name=\"Clicker\" onclick=\\'feedback(this.name,\"ping!\",null,true)\\'>Click me</button>'\n  // }\n};\n    \nreturn newMsg;\n",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 610,
+        "y": 440,
+        "wires": [
+            [
+                "b9f3138b8606246b",
+                "b92392b73d5ae9c8"
+            ]
+        ]
+    },
+    {
+        "id": "3a4c108ef6d59a3b",
+        "type": "debug",
+        "z": "2c12da721d40c6cc",
+        "name": "API Response",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1100,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "fa144a2feb52460b",
+        "type": "switch",
+        "z": "2c12da721d40c6cc",
+        "name": "check message",
+        "property": "payload.value.name",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "nempty"
+            },
+            {
+                "t": "empty"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 360,
+        "y": 460,
+        "wires": [
+            [
+                "1627f6d934a6ca86"
+            ],
+            [
+                "0218bfa764f2d1be"
+            ]
+        ]
+    },
+    {
+        "id": "f22201e9969fb210",
+        "type": "comment",
+        "z": "2c12da721d40c6cc",
+        "name": "Get the result from the post",
+        "info": "https://github.com/dceejay/RedMap?tab=readme-ov-file#events-from-the-map\n\n",
+        "x": 170,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4fd458895b18166f",
+        "type": "comment",
+        "z": "2c12da721d40c6cc",
+        "name": "CONFIG ME!!!!",
+        "info": "Go to:\n Menu -> \n   Settings -> \n     Environment\n\n",
+        "x": 170,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "3e1ef89d6d207377",
+        "type": "comment",
+        "z": "2c12da721d40c6cc",
+        "name": "API Token here",
+        "info": "",
+        "x": 860,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "022e73267c24d65b",
+        "type": "tak registration",
+        "z": "2c12da721d40c6cc",
+        "name": "NRed",
+        "callsign": "",
+        "group": "Cyan",
+        "role": "Gateway",
+        "latitude": "",
+        "longitude": "",
+        "repeat": "60",
+        "dphost": "",
+        "x": 110,
+        "y": 180,
+        "wires": [
+            [
+                "0cee935f3701351d"
+            ]
+        ],
+        "info": "## Keep the TAK Server Connection Alive\n\n"
+    },
+    {
+        "id": "f41cba26de1e8af9",
+        "type": "tak ingest",
+        "z": "2c12da721d40c6cc",
+        "name": "",
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "68d5546bc74741de",
+                "dc259eb71369576b"
+            ]
+        ]
+    },
+    {
+        "id": "0cee935f3701351d",
+        "type": "tcp request",
+        "z": "2c12da721d40c6cc",
+        "name": "tcp: FTS Server",
+        "server": "${FTH_FTS_URL}",
+        "port": "${FTH_FTS_TCP_Port}",
+        "out": "sit",
+        "ret": "string",
+        "splitc": " ",
+        "newline": "</event>",
+        "trim": false,
+        "tls": "",
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "f41cba26de1e8af9",
+                "13293209b90c7647"
+            ]
+        ]
+    },
+    {
+        "id": "13293209b90c7647",
+        "type": "debug",
+        "z": "2c12da721d40c6cc",
+        "name": "TAK Server Events",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b92392b73d5ae9c8",
+        "type": "debug",
+        "z": "2c12da721d40c6cc",
+        "name": "CoT msg",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "7ec6a0111d43d20a",
+        "type": "debug",
+        "z": "2c12da721d40c6cc",
+        "name": "worldmap event",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 420,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "3e845361e67d6e3f",
+        "type": "worldmap in",
+        "z": "2c12da721d40c6cc",
+        "name": "worldmap: tak-map on-connect",
+        "path": "/tak-map",
+        "events": "connect",
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [
+                "70c9a88a608c375e",
+                "052221938db5d21f"
+            ]
+        ]
+    },
+    {
+        "id": "052221938db5d21f",
+        "type": "debug",
+        "z": "2c12da721d40c6cc",
+        "name": "tak-map connect",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 380,
+        "wires": []
+    }
+]
