@@ -11,7 +11,7 @@ See docs [here](https://freetakteam.github.io/FreeTAKServer-User-Docs/FreeTAKHub
 Deprecated.
 
 This contains a flow for setting the global context variables.
-Using global context variables is not gauranteed to be installed before they are used.
+Using global context variables is not guaranteed to be installed before they are used.
 Since v3.1 NodeRED recommends using global environment variables instead.
 
 ### `freetakhub_webmap_v5.json`
